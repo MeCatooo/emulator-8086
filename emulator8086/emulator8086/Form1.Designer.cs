@@ -31,6 +31,10 @@ namespace emulator8086
         {
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.AX = new System.Windows.Forms.Label();
+            this.BX = new System.Windows.Forms.Label();
+            this.CX = new System.Windows.Forms.Label();
+            this.DX = new System.Windows.Forms.Label();
             this.AL = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.BL = new System.Windows.Forms.Label();
@@ -41,10 +45,12 @@ namespace emulator8086
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.AX = new System.Windows.Forms.Label();
-            this.BX = new System.Windows.Forms.Label();
-            this.CX = new System.Windows.Forms.Label();
-            this.DX = new System.Windows.Forms.Label();
+            this.comboBoxOD = new System.Windows.Forms.ComboBox();
+            this.comboBoxDO = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.TempTExt = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
@@ -77,6 +83,43 @@ namespace emulator8086
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(427, 826);
             this.panel1.TabIndex = 1;
+            // 
+            // AX
+            // 
+            this.AX.AutoSize = true;
+            this.AX.Location = new System.Drawing.Point(121, 94);
+            this.AX.Name = "AX";
+            this.AX.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.AX.Size = new System.Drawing.Size(13, 13);
+            this.AX.TabIndex = 15;
+            this.AX.Text = "0";
+            // 
+            // BX
+            // 
+            this.BX.AutoSize = true;
+            this.BX.Location = new System.Drawing.Point(121, 288);
+            this.BX.Name = "BX";
+            this.BX.Size = new System.Drawing.Size(13, 13);
+            this.BX.TabIndex = 14;
+            this.BX.Text = "0";
+            // 
+            // CX
+            // 
+            this.CX.AutoSize = true;
+            this.CX.Location = new System.Drawing.Point(121, 515);
+            this.CX.Name = "CX";
+            this.CX.Size = new System.Drawing.Size(13, 13);
+            this.CX.TabIndex = 13;
+            this.CX.Text = "0";
+            // 
+            // DX
+            // 
+            this.DX.AutoSize = true;
+            this.DX.Location = new System.Drawing.Point(121, 770);
+            this.DX.Name = "DX";
+            this.DX.Size = new System.Drawing.Size(13, 13);
+            this.DX.TabIndex = 12;
+            this.DX.Text = "0";
             // 
             // AL
             // 
@@ -179,48 +222,81 @@ namespace emulator8086
             this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 6;
             // 
-            // AX
+            // comboBoxOD
             // 
-            this.AX.AutoSize = true;
-            this.AX.Location = new System.Drawing.Point(121, 94);
-            this.AX.Name = "AX";
-            this.AX.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.AX.Size = new System.Drawing.Size(13, 13);
-            this.AX.TabIndex = 15;
-            this.AX.Text = "0";
+            this.comboBoxOD.FormattingEnabled = true;
+            this.comboBoxOD.Items.AddRange(new object[] {
+            "AX",
+            "BX",
+            "CX",
+            "DX"});
+            this.comboBoxOD.Location = new System.Drawing.Point(196, 519);
+            this.comboBoxOD.Name = "comboBoxOD";
+            this.comboBoxOD.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxOD.TabIndex = 7;
+            this.comboBoxOD.Text = "AX";
             // 
-            // BX
+            // comboBoxDO
             // 
-            this.BX.AutoSize = true;
-            this.BX.Location = new System.Drawing.Point(121, 288);
-            this.BX.Name = "BX";
-            this.BX.Size = new System.Drawing.Size(13, 13);
-            this.BX.TabIndex = 14;
-            this.BX.Text = "0";
+            this.comboBoxDO.FormattingEnabled = true;
+            this.comboBoxDO.Items.AddRange(new object[] {
+            "AX",
+            "BX",
+            "CX",
+            "DX"});
+            this.comboBoxDO.Location = new System.Drawing.Point(351, 519);
+            this.comboBoxDO.Name = "comboBoxDO";
+            this.comboBoxDO.Size = new System.Drawing.Size(111, 21);
+            this.comboBoxDO.TabIndex = 8;
+            this.comboBoxDO.Text = "AX";
             // 
-            // CX
+            // label2
             // 
-            this.CX.AutoSize = true;
-            this.CX.Location = new System.Drawing.Point(121, 515);
-            this.CX.Name = "CX";
-            this.CX.Size = new System.Drawing.Size(13, 13);
-            this.CX.TabIndex = 13;
-            this.CX.Text = "0";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(113, 525);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(31, 13);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "MOV";
             // 
-            // DX
+            // label3
             // 
-            this.DX.AutoSize = true;
-            this.DX.Location = new System.Drawing.Point(121, 770);
-            this.DX.Name = "DX";
-            this.DX.Size = new System.Drawing.Size(13, 13);
-            this.DX.TabIndex = 12;
-            this.DX.Text = "0";
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(323, 525);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(22, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "TO";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(351, 567);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Zatwiedź";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // TempTExt
+            // 
+            this.TempTExt.Location = new System.Drawing.Point(529, 519);
+            this.TempTExt.Name = "TempTExt";
+            this.TempTExt.Size = new System.Drawing.Size(100, 20);
+            this.TempTExt.TabIndex = 12;
+            this.TempTExt.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1548, 851);
+            this.Controls.Add(this.TempTExt);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.comboBoxDO);
+            this.Controls.Add(this.comboBoxOD);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.comboBox1);
@@ -232,6 +308,7 @@ namespace emulator8086
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -252,6 +329,12 @@ namespace emulator8086
         private System.Windows.Forms.Label BX;
         private System.Windows.Forms.Label CX;
         private System.Windows.Forms.Label DX;
+        private System.Windows.Forms.ComboBox comboBoxOD;
+        private System.Windows.Forms.ComboBox comboBoxDO;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox TempTExt;
     }
 }
 
