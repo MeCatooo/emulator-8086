@@ -15,20 +15,55 @@ namespace emulator8086
     public partial class Form1 : Form
     {
         int[] Zmienne = new int[4];
+        string[,] Podzial = new string[4, 2];
+        static bool OnlyHexInString(string test)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(test, @"\A\b[0-9a-fA-F]+\b\Z");
+        }
 
         public void Update_Display()
         {
             AX.Text = Convert.ToString(Zmienne[0]);
-            AL.Text = Convert.ToString(Convert.ToInt32(Zmienne[0]), 2);
+            AL.Text = Convert.ToString(Zmienne[0], 16);
 
             BX.Text = Convert.ToString(Zmienne[1]);
-            BL.Text = Convert.ToString(Convert.ToInt32(Zmienne[1]), 2);
+            BL.Text = Convert.ToString(Zmienne[1], 16);
 
             CX.Text = Convert.ToString(Zmienne[2]);
-            CL.Text = Convert.ToString(Convert.ToInt32(Zmienne[2]), 2);
+            CL.Text = Convert.ToString(Zmienne[2], 16);
 
             DX.Text = Convert.ToString(Zmienne[3]);
-            DL.Text = Convert.ToString(Convert.ToInt32(Zmienne[3]), 2);
+            DL.Text = Convert.ToString(Zmienne[3], 16);
+            Fill();
+            Split_Variables();
+        }
+        public void Fill()
+        {
+            for (; AL.Text.Length + BL.Text.Length + CL.Text.Length + DL.Text.Length < 16;)
+            {
+                if (AL.Text.Length < 4)
+                    AL.Text = "0" + AL.Text;
+
+                if (BL.Text.Length < 4)
+                    BL.Text = "0" + BL.Text;
+
+                if (CL.Text.Length < 4)
+                    CL.Text = "0" + CL.Text;
+
+                if (DL.Text.Length < 4)
+                    DL.Text = "0" + DL.Text;
+            }
+        }
+        public void Split_Variables()
+        {
+            label8.Text = AL.Text.Remove(2,2);
+            label14.Text = AL.Text.Remove(0, 2);
+            label10.Text = BL.Text.Remove(2, 2);
+            label15.Text = BL.Text.Remove(0, 2);
+            label11.Text = CL.Text.Remove(2, 2);
+            label16.Text = CL.Text.Remove(0, 2);
+            label13.Text = DL.Text.Remove(2, 2);
+            label17.Text = DL.Text.Remove(0, 2);
         }
 
         public void Update_Variables(int a, string b)
@@ -79,17 +114,22 @@ namespace emulator8086
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            
+
             if (comboBox1.Items.Contains(comboBox1.Text))
             {
-                string wybrane = comboBox1.SelectedItem.ToString();
-                if (numericUpDown1.Value < 65536)
+                if (OnlyHexInString(numericUpDown1.Text))
                 {
-                    Update_Variables(Convert.ToInt32(numericUpDown1.Text), wybrane);
-                    Update_Display();
+                    string wybrane = comboBox1.SelectedItem.ToString();
+                    if (Convert.ToInt32(numericUpDown1.Text, 16) < 65535)
+                    {
+                        Update_Variables(Convert.ToInt32(numericUpDown1.Text), wybrane);
+                        Update_Display();
+                    }
+                    else
+                        MessageBox.Show("Zbyt duża liczba!");
                 }
                 else
-                    MessageBox.Show("Zbyt duża liczba");
+                    MessageBox.Show("Nieprawidłowy formtat liczby!");
             }
             else
                 MessageBox.Show("Wybierz poprawny cel z listy!!!");
@@ -97,10 +137,10 @@ namespace emulator8086
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (comboBoxOD.Items.Contains(comboBoxOD.Text)&& comboBoxDO.Items.Contains(comboBoxDO.Text))
+            if (comboBoxOD.Items.Contains(comboBoxOD.Text) && comboBoxDO.Items.Contains(comboBoxDO.Text))
             {
-                if (comboBoxOD.SelectedItem != comboBoxDO.SelectedItem) 
-                { 
+                if (comboBoxOD.SelectedItem != comboBoxDO.SelectedItem)
+                {
                     int temp = Zmienne[Text_To_Int(comboBoxOD.SelectedItem.ToString())];
                     Update_Variables(0, comboBoxOD.SelectedItem.ToString());
                     Update_Variables(temp, comboBoxDO.SelectedItem.ToString());
