@@ -56,7 +56,7 @@ namespace emulator8086
         }
         public void Split_Variables()
         {
-            label8.Text = AL.Text.Remove(2,2);
+            label8.Text = AL.Text.Remove(2, 2);
             label14.Text = AL.Text.Remove(0, 2);
             label10.Text = BL.Text.Remove(2, 2);
             label15.Text = BL.Text.Remove(0, 2);
@@ -141,9 +141,9 @@ namespace emulator8086
             {
                 if (comboBoxOD.SelectedItem != comboBoxDO.SelectedItem)
                 {
-                    int temp = Zmienne[Text_To_Int(comboBoxOD.SelectedItem.ToString())];
-                    Update_Variables(0, comboBoxOD.SelectedItem.ToString());
-                    Update_Variables(temp, comboBoxDO.SelectedItem.ToString());
+                    int temp = Zmienne[Text_To_Int(comboBoxDO.SelectedItem.ToString())];
+                    Update_Variables(0, comboBoxDO.SelectedItem.ToString());
+                    Update_Variables(temp, comboBoxOD.SelectedItem.ToString());
                     Update_Display();
                 }
                 else
@@ -157,14 +157,35 @@ namespace emulator8086
             {
                 if (comboBoxFrom.SelectedItem != comboBoxTo.SelectedItem)
                 {
-                    int temp = Zmienne[Text_To_Int(comboBoxFrom.SelectedItem.ToString())];
-                    Update_Variables(Zmienne[Text_To_Int(comboBoxTo.SelectedItem.ToString())], comboBoxFrom.SelectedItem.ToString());
-                    Update_Variables(temp, comboBoxTo.SelectedItem.ToString());
+                    int temp = Zmienne[Text_To_Int(comboBoxTo.SelectedItem.ToString())];
+                    Update_Variables(Zmienne[Text_To_Int(comboBoxFrom.SelectedItem.ToString())], comboBoxTo.SelectedItem.ToString());
+                    Update_Variables(temp, comboBoxFrom.SelectedItem.ToString());
                     Update_Display();
                 }
                 else
                     MessageBox.Show("Cele muszą być różne!!!");
             }
+        }
+
+        private void button_Random_Click(object sender, EventArgs e)
+        {
+            Random rand = new Random();
+            int temp;
+            for (int i = 0; i < 4; i++)
+            {
+                temp = rand.Next(0, 65536);
+                Zmienne[i] = temp;
+            }
+            Update_Display();
+        }
+
+        private void button5_Reset_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                Zmienne[i] = 0;
+            }
+            Update_Display();
         }
     }
 }
