@@ -56,14 +56,14 @@ namespace emulator8086
         }
         public void Split_Variables()
         {
-            label8.Text = AL.Text.Remove(2, 2);
-            label14.Text = AL.Text.Remove(0, 2);
-            label10.Text = BL.Text.Remove(2, 2);
-            label15.Text = BL.Text.Remove(0, 2);
-            label11.Text = CL.Text.Remove(2, 2);
-            label16.Text = CL.Text.Remove(0, 2);
-            label13.Text = DL.Text.Remove(2, 2);
-            label17.Text = DL.Text.Remove(0, 2);
+            label8.Text = AL.Text.Remove(0, 2);
+            label14.Text = AL.Text.Remove(2, 2);
+            label10.Text = BL.Text.Remove(0, 2);
+            label15.Text = BL.Text.Remove(2, 2);
+            label11.Text = CL.Text.Remove(0, 2);
+            label16.Text = CL.Text.Remove(2, 2);
+            label13.Text = DL.Text.Remove(0, 2);
+            label17.Text = DL.Text.Remove(2, 2);
         }
 
         public void Update_Variables(int a, string b)
@@ -112,7 +112,7 @@ namespace emulator8086
             InitializeComponent();
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e) //sett
         {
 
             if (comboBox1.Items.Contains(comboBox1.Text))
@@ -120,9 +120,9 @@ namespace emulator8086
                 if (OnlyHexInString(numericUpDown1.Text))
                 {
                     string wybrane = comboBox1.SelectedItem.ToString();
-                    if (Convert.ToInt32(numericUpDown1.Text, 16) < 65535)
+                    if (Convert.ToInt32(numericUpDown1.Text, 16) < 65536)
                     {
-                        Update_Variables(Convert.ToInt32(numericUpDown1.Text), wybrane);
+                        Update_Variables(Convert.ToInt32(numericUpDown1.Text,16), wybrane);
                         Update_Display();
                     }
                     else
@@ -135,14 +135,14 @@ namespace emulator8086
                 MessageBox.Show("Wybierz poprawny cel z listy!!!");
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //MOVE
         {
             if (comboBoxOD.Items.Contains(comboBoxOD.Text) && comboBoxDO.Items.Contains(comboBoxDO.Text))
             {
                 if (comboBoxOD.SelectedItem != comboBoxDO.SelectedItem)
                 {
                     int temp = Zmienne[Text_To_Int(comboBoxDO.SelectedItem.ToString())];
-                    Update_Variables(0, comboBoxDO.SelectedItem.ToString());
+                    //Update_Variables(0, comboBoxDO.SelectedItem.ToString());
                     Update_Variables(temp, comboBoxOD.SelectedItem.ToString());
                     Update_Display();
                 }
@@ -151,7 +151,7 @@ namespace emulator8086
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) //EXCH
         {
             if (comboBoxFrom.Items.Contains(comboBoxFrom.Text) && comboBoxTo.Items.Contains(comboBoxTo.Text))
             {
