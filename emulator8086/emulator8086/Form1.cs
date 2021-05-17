@@ -14,7 +14,7 @@ namespace emulator8086
 {
     public partial class Form1 : Form
     {
-        int[] Zmienne = new int[4];
+        int[] Zmienne = new int[8];
         string[,] Podzial = new string[4, 2];
         static bool OnlyHexInString(string test)
         {
@@ -23,87 +23,127 @@ namespace emulator8086
 
         public void Update_Display()
         {
-            AX.Text = Convert.ToString(Zmienne[0]);
-            AL.Text = Convert.ToString(Zmienne[0], 16);
+            AL_L.Text = Convert.ToString(Zmienne[0], 16).ToUpper();
+            AH_L.Text = Convert.ToString(Zmienne[1], 16).ToUpper();
 
-            BX.Text = Convert.ToString(Zmienne[1]);
-            BL.Text = Convert.ToString(Zmienne[1], 16);
+            BL_L.Text = Convert.ToString(Zmienne[2], 16).ToUpper();
+            BH_L.Text = Convert.ToString(Zmienne[3], 16).ToUpper();
 
-            CX.Text = Convert.ToString(Zmienne[2]);
-            CL.Text = Convert.ToString(Zmienne[2], 16);
+            CL_L.Text = Convert.ToString(Zmienne[4], 16).ToUpper();
+            CH_L.Text = Convert.ToString(Zmienne[5], 16).ToUpper();
 
-            DX.Text = Convert.ToString(Zmienne[3]);
-            DL.Text = Convert.ToString(Zmienne[3], 16);
+            DL_L.Text = Convert.ToString(Zmienne[6], 16).ToUpper();
+            DH_L.Text = Convert.ToString(Zmienne[7], 16).ToUpper();
             Fill();
-            Split_Variables();
+            Merge();
         }
         public void Fill()
         {
-            for (; AL.Text.Length + BL.Text.Length + CL.Text.Length + DL.Text.Length < 16;)
+            for (int i=0; i < 2;i++)
             {
-                if (AL.Text.Length < 4)
-                    AL.Text = "0" + AL.Text;
+                if (AL_L.Text.Length < 2)
+                    AL_L.Text = "0" + AL_L.Text;
 
-                if (BL.Text.Length < 4)
-                    BL.Text = "0" + BL.Text;
+                if (AH_L.Text.Length < 2)
+                    AH_L.Text = "0" + AH_L.Text;
 
-                if (CL.Text.Length < 4)
-                    CL.Text = "0" + CL.Text;
+                if (BL_L.Text.Length < 2)
+                    BL_L.Text = "0" + BL_L.Text;
 
-                if (DL.Text.Length < 4)
-                    DL.Text = "0" + DL.Text;
+                if (BH_L.Text.Length < 2)
+                    BH_L.Text = "0" + BH_L.Text;
+
+                if (CL_L.Text.Length < 2)
+                    CL_L.Text = "0" + CL_L.Text;
+
+                if (CH_L.Text.Length < 2)
+                    CH_L.Text = "0" + CH_L.Text;
+
+                if (DL_L.Text.Length < 2)
+                    DL_L.Text = "0" + DL_L.Text;
+
+                if (DH_L.Text.Length < 2)
+                    DH_L.Text = "0" + DH_L.Text;
             }
         }
-        public void Split_Variables()
+        public void Merge()
         {
-            label8.Text = AL.Text.Remove(0, 2);
-            label14.Text = AL.Text.Remove(2, 2);
-            label10.Text = BL.Text.Remove(0, 2);
-            label15.Text = BL.Text.Remove(2, 2);
-            label11.Text = CL.Text.Remove(0, 2);
-            label16.Text = CL.Text.Remove(2, 2);
-            label13.Text = DL.Text.Remove(0, 2);
-            label17.Text = DL.Text.Remove(2, 2);
+            AL.Text = AH_L.Text + AL_L.Text;
+            BL.Text = BH_L.Text + BL_L.Text;
+            CL.Text = CH_L.Text + CL_L.Text;
+            DL.Text = DH_L.Text + DL_L.Text;
         }
-
         public void Update_Variables(int a, string b)
         {
-            if (b == "AX")
+            if (b == "AL")
             {
                 Zmienne[0] = a;
             }
-            if (b == "BX")
+            if (b == "AH")
             {
                 Zmienne[1] = a;
             }
-            if (b == "CX")
+            if (b == "BL")
             {
                 Zmienne[2] = a;
             }
-            if (b == "DX")
+            if (b == "BH")
             {
                 Zmienne[3] = a;
+            }
+            if (b == "CL")
+            {
+                Zmienne[4] = a;
+            }
+            if (b == "CH")
+            {
+                Zmienne[5] = a;
+            }
+            if (b == "DL")
+            {
+                Zmienne[6] = a;
+            }
+            if (b == "DH")
+            {
+                Zmienne[7] = a;
             }
         }
 
         public int Text_To_Int(string tak)
         {
-            if (tak == "AX")
+            if (tak == "AL")
             {
                 return (0);
             }
-            if (tak == "BX")
+            else if (tak == "AH")
             {
                 return (1);
             }
-            if (tak == "CX")
+            else if (tak == "BL")
             {
                 return (2);
             }
-            if (tak == "DX")
+            else if (tak == "BH")
             {
                 return (3);
             }
+            else if (tak == "CL")
+            {
+                return (4);
+            }
+            else if (tak == "CH")
+            {
+                return (5);
+            }
+            else if (tak == "DL")
+            {
+                return (6);
+            }
+            else if (tak == "DH")
+            {
+                return (7);
+            }
+
             else
                 return (0);
         }
@@ -120,7 +160,7 @@ namespace emulator8086
                 if (OnlyHexInString(numericUpDown1.Text))
                 {
                     string wybrane = comboBox1.SelectedItem.ToString();
-                    if (Convert.ToInt32(numericUpDown1.Text, 16) < 65536)
+                    if (Convert.ToInt32(numericUpDown1.Text, 16) < 256)
                     {
                         Update_Variables(Convert.ToInt32(numericUpDown1.Text,16), wybrane);
                         Update_Display();
@@ -171,9 +211,9 @@ namespace emulator8086
         {
             Random rand = new Random();
             int temp;
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 8; i++)
             {
-                temp = rand.Next(0, 65536);
+                temp = rand.Next(0, 256);
                 Zmienne[i] = temp;
             }
             Update_Display();
@@ -181,7 +221,7 @@ namespace emulator8086
 
         private void button5_Reset_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 8; i++)
             {
                 Zmienne[i] = 0;
             }

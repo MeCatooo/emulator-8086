@@ -34,18 +34,14 @@ namespace emulator8086
             this.panel1 = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.AX = new System.Windows.Forms.Label();
-            this.BX = new System.Windows.Forms.Label();
-            this.CX = new System.Windows.Forms.Label();
-            this.DX = new System.Windows.Forms.Label();
+            this.AH_L = new System.Windows.Forms.Label();
+            this.BH_L = new System.Windows.Forms.Label();
+            this.CH_L = new System.Windows.Forms.Label();
+            this.DH_L = new System.Windows.Forms.Label();
+            this.AL_L = new System.Windows.Forms.Label();
+            this.BL_L = new System.Windows.Forms.Label();
+            this.CL_L = new System.Windows.Forms.Label();
+            this.DL_L = new System.Windows.Forms.Label();
             this.AL = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.BL = new System.Windows.Forms.Label();
@@ -76,7 +72,7 @@ namespace emulator8086
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(52, 253);
+            this.label1.Location = new System.Drawing.Point(189, 253);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(22, 13);
             this.label1.TabIndex = 0;
@@ -86,18 +82,14 @@ namespace emulator8086
             // 
             this.panel1.Controls.Add(this.label19);
             this.panel1.Controls.Add(this.label18);
-            this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.label15);
-            this.panel1.Controls.Add(this.label16);
-            this.panel1.Controls.Add(this.label17);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label11);
-            this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.AX);
-            this.panel1.Controls.Add(this.BX);
-            this.panel1.Controls.Add(this.CX);
-            this.panel1.Controls.Add(this.DX);
+            this.panel1.Controls.Add(this.AH_L);
+            this.panel1.Controls.Add(this.BH_L);
+            this.panel1.Controls.Add(this.CH_L);
+            this.panel1.Controls.Add(this.DH_L);
+            this.panel1.Controls.Add(this.AL_L);
+            this.panel1.Controls.Add(this.BL_L);
+            this.panel1.Controls.Add(this.CL_L);
+            this.panel1.Controls.Add(this.DL_L);
             this.panel1.Controls.Add(this.AL);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.BL);
@@ -129,114 +121,77 @@ namespace emulator8086
             this.label18.TabIndex = 24;
             this.label18.Text = "HIGH";
             // 
-            // label14
+            // AH_L
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(357, 93);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(19, 13);
-            this.label14.TabIndex = 23;
-            this.label14.Text = "00";
+            this.AH_L.AutoSize = true;
+            this.AH_L.Location = new System.Drawing.Point(357, 93);
+            this.AH_L.Name = "AH_L";
+            this.AH_L.Size = new System.Drawing.Size(19, 13);
+            this.AH_L.TabIndex = 23;
+            this.AH_L.Text = "00";
             // 
-            // label15
+            // BH_L
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(357, 145);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(19, 13);
-            this.label15.TabIndex = 22;
-            this.label15.Text = "00";
+            this.BH_L.AutoSize = true;
+            this.BH_L.Location = new System.Drawing.Point(357, 145);
+            this.BH_L.Name = "BH_L";
+            this.BH_L.Size = new System.Drawing.Size(19, 13);
+            this.BH_L.TabIndex = 22;
+            this.BH_L.Text = "00";
             // 
-            // label16
+            // CH_L
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(357, 200);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(19, 13);
-            this.label16.TabIndex = 21;
-            this.label16.Text = "00";
+            this.CH_L.AutoSize = true;
+            this.CH_L.Location = new System.Drawing.Point(357, 200);
+            this.CH_L.Name = "CH_L";
+            this.CH_L.Size = new System.Drawing.Size(19, 13);
+            this.CH_L.TabIndex = 21;
+            this.CH_L.Text = "00";
             // 
-            // label17
+            // DH_L
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(357, 252);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(19, 13);
-            this.label17.TabIndex = 20;
-            this.label17.Text = "00";
+            this.DH_L.AutoSize = true;
+            this.DH_L.Location = new System.Drawing.Point(357, 252);
+            this.DH_L.Name = "DH_L";
+            this.DH_L.Size = new System.Drawing.Size(19, 13);
+            this.DH_L.TabIndex = 20;
+            this.DH_L.Text = "00";
             // 
-            // label8
+            // AL_L
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(311, 93);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(19, 13);
-            this.label8.TabIndex = 19;
-            this.label8.Text = "00";
+            this.AL_L.AutoSize = true;
+            this.AL_L.Location = new System.Drawing.Point(311, 93);
+            this.AL_L.Name = "AL_L";
+            this.AL_L.Size = new System.Drawing.Size(19, 13);
+            this.AL_L.TabIndex = 19;
+            this.AL_L.Text = "00";
             // 
-            // label10
+            // BL_L
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(311, 145);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(19, 13);
-            this.label10.TabIndex = 18;
-            this.label10.Text = "00";
+            this.BL_L.AutoSize = true;
+            this.BL_L.Location = new System.Drawing.Point(311, 145);
+            this.BL_L.Name = "BL_L";
+            this.BL_L.Size = new System.Drawing.Size(19, 13);
+            this.BL_L.TabIndex = 18;
+            this.BL_L.Text = "00";
             // 
-            // label11
+            // CL_L
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(311, 200);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(19, 13);
-            this.label11.TabIndex = 17;
-            this.label11.Text = "00";
+            this.CL_L.AutoSize = true;
+            this.CL_L.Location = new System.Drawing.Point(311, 200);
+            this.CL_L.Name = "CL_L";
+            this.CL_L.Size = new System.Drawing.Size(19, 13);
+            this.CL_L.TabIndex = 17;
+            this.CL_L.Text = "00";
             // 
-            // label13
+            // DL_L
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(311, 252);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(19, 13);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "00";
-            // 
-            // AX
-            // 
-            this.AX.AutoSize = true;
-            this.AX.Location = new System.Drawing.Point(121, 94);
-            this.AX.Name = "AX";
-            this.AX.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.AX.Size = new System.Drawing.Size(13, 13);
-            this.AX.TabIndex = 15;
-            this.AX.Text = "0";
-            // 
-            // BX
-            // 
-            this.BX.AutoSize = true;
-            this.BX.Location = new System.Drawing.Point(121, 146);
-            this.BX.Name = "BX";
-            this.BX.Size = new System.Drawing.Size(13, 13);
-            this.BX.TabIndex = 14;
-            this.BX.Text = "0";
-            // 
-            // CX
-            // 
-            this.CX.AutoSize = true;
-            this.CX.Location = new System.Drawing.Point(121, 201);
-            this.CX.Name = "CX";
-            this.CX.Size = new System.Drawing.Size(13, 13);
-            this.CX.TabIndex = 13;
-            this.CX.Text = "0";
-            // 
-            // DX
-            // 
-            this.DX.AutoSize = true;
-            this.DX.Location = new System.Drawing.Point(121, 253);
-            this.DX.Name = "DX";
-            this.DX.Size = new System.Drawing.Size(13, 13);
-            this.DX.TabIndex = 12;
-            this.DX.Text = "0";
+            this.DL_L.AutoSize = true;
+            this.DL_L.Location = new System.Drawing.Point(311, 252);
+            this.DL_L.Name = "DL_L";
+            this.DL_L.Size = new System.Drawing.Size(19, 13);
+            this.DL_L.TabIndex = 16;
+            this.DL_L.Text = "00";
             // 
             // AL
             // 
@@ -250,7 +205,7 @@ namespace emulator8086
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(52, 94);
+            this.label12.Location = new System.Drawing.Point(189, 94);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(21, 13);
             this.label12.TabIndex = 9;
@@ -268,7 +223,7 @@ namespace emulator8086
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(52, 146);
+            this.label9.Location = new System.Drawing.Point(189, 146);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(21, 13);
             this.label9.TabIndex = 6;
@@ -286,7 +241,7 @@ namespace emulator8086
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(52, 201);
+            this.label6.Location = new System.Drawing.Point(189, 201);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(21, 13);
             this.label6.TabIndex = 3;
@@ -306,15 +261,19 @@ namespace emulator8086
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.Off;
             this.comboBox1.Items.AddRange(new object[] {
-            "AX",
-            "BX",
-            "CX",
-            "DX"});
+            "AL",
+            "AH",
+            "BL",
+            "BH",
+            "CL",
+            "CH",
+            "DL",
+            "DH"});
             this.comboBox1.Location = new System.Drawing.Point(225, 107);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 4;
-            this.comboBox1.Text = "AX";
+            this.comboBox1.Text = "AL";
             // 
             // button1
             // 
@@ -330,29 +289,37 @@ namespace emulator8086
             // 
             this.comboBoxOD.FormattingEnabled = true;
             this.comboBoxOD.Items.AddRange(new object[] {
-            "AX",
-            "BX",
-            "CX",
-            "DX"});
+            "AL",
+            "AH",
+            "BL",
+            "BH",
+            "CL",
+            "CH",
+            "DL",
+            "DH"});
             this.comboBoxOD.Location = new System.Drawing.Point(225, 250);
             this.comboBoxOD.Name = "comboBoxOD";
             this.comboBoxOD.Size = new System.Drawing.Size(121, 21);
             this.comboBoxOD.TabIndex = 7;
-            this.comboBoxOD.Text = "AX";
+            this.comboBoxOD.Text = "AL";
             // 
             // comboBoxDO
             // 
             this.comboBoxDO.FormattingEnabled = true;
             this.comboBoxDO.Items.AddRange(new object[] {
-            "AX",
-            "BX",
-            "CX",
-            "DX"});
+            "AL",
+            "AH",
+            "BL",
+            "BH",
+            "CL",
+            "CH",
+            "DL",
+            "DH"});
             this.comboBoxDO.Location = new System.Drawing.Point(380, 250);
             this.comboBoxDO.Name = "comboBoxDO";
             this.comboBoxDO.Size = new System.Drawing.Size(111, 21);
             this.comboBoxDO.TabIndex = 8;
-            this.comboBoxDO.Text = "AX";
+            this.comboBoxDO.Text = "AH";
             // 
             // label2
             // 
@@ -405,29 +372,37 @@ namespace emulator8086
             // 
             this.comboBoxTo.FormattingEnabled = true;
             this.comboBoxTo.Items.AddRange(new object[] {
-            "AX",
-            "BX",
-            "CX",
-            "DX"});
+            "AL",
+            "AH",
+            "BL",
+            "BH",
+            "CL",
+            "CH",
+            "DL",
+            "DH"});
             this.comboBoxTo.Location = new System.Drawing.Point(380, 384);
             this.comboBoxTo.Name = "comboBoxTo";
             this.comboBoxTo.Size = new System.Drawing.Size(111, 21);
             this.comboBoxTo.TabIndex = 13;
-            this.comboBoxTo.Text = "AX";
+            this.comboBoxTo.Text = "AH";
             // 
             // comboBoxFrom
             // 
             this.comboBoxFrom.FormattingEnabled = true;
             this.comboBoxFrom.Items.AddRange(new object[] {
-            "AX",
-            "BX",
-            "CX",
-            "DX"});
+            "AL",
+            "AH",
+            "BL",
+            "BH",
+            "CL",
+            "CH",
+            "DL",
+            "DH"});
             this.comboBoxFrom.Location = new System.Drawing.Point(225, 384);
             this.comboBoxFrom.Name = "comboBoxFrom";
             this.comboBoxFrom.Size = new System.Drawing.Size(121, 21);
             this.comboBoxFrom.TabIndex = 12;
-            this.comboBoxFrom.Text = "AX";
+            this.comboBoxFrom.Text = "AL";
             // 
             // label7
             // 
@@ -520,10 +495,6 @@ namespace emulator8086
         private System.Windows.Forms.Label DL;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label AX;
-        private System.Windows.Forms.Label BX;
-        private System.Windows.Forms.Label CX;
-        private System.Windows.Forms.Label DX;
         private System.Windows.Forms.ComboBox comboBoxOD;
         private System.Windows.Forms.ComboBox comboBoxDO;
         private System.Windows.Forms.Label label2;
@@ -535,14 +506,14 @@ namespace emulator8086
         private System.Windows.Forms.ComboBox comboBoxFrom;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox numericUpDown1;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label AH_L;
+        private System.Windows.Forms.Label BH_L;
+        private System.Windows.Forms.Label CH_L;
+        private System.Windows.Forms.Label DH_L;
+        private System.Windows.Forms.Label AL_L;
+        private System.Windows.Forms.Label BL_L;
+        private System.Windows.Forms.Label CL_L;
+        private System.Windows.Forms.Label DL_L;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
