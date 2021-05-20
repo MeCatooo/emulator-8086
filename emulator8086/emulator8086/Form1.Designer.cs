@@ -268,7 +268,11 @@ namespace emulator8086
             "CL",
             "CH",
             "DL",
-            "DH"});
+            "DH",
+            "AX",
+            "BX",
+            "CX",
+            "DX"});
             this.comboBox1.Location = new System.Drawing.Point(225, 107);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
@@ -296,7 +300,11 @@ namespace emulator8086
             "CL",
             "CH",
             "DL",
-            "DH"});
+            "DH",
+            "AX",
+            "BX",
+            "CX",
+            "DX"});
             this.comboBoxOD.Location = new System.Drawing.Point(225, 250);
             this.comboBoxOD.Name = "comboBoxOD";
             this.comboBoxOD.Size = new System.Drawing.Size(121, 21);
@@ -314,7 +322,11 @@ namespace emulator8086
             "CL",
             "CH",
             "DL",
-            "DH"});
+            "DH",
+            "AX",
+            "BX",
+            "CX",
+            "DX"});
             this.comboBoxDO.Location = new System.Drawing.Point(380, 250);
             this.comboBoxDO.Name = "comboBoxDO";
             this.comboBoxDO.Size = new System.Drawing.Size(111, 21);
@@ -379,7 +391,11 @@ namespace emulator8086
             "CL",
             "CH",
             "DL",
-            "DH"});
+            "DH",
+            "AX",
+            "BX",
+            "CX",
+            "DX"});
             this.comboBoxTo.Location = new System.Drawing.Point(380, 384);
             this.comboBoxTo.Name = "comboBoxTo";
             this.comboBoxTo.Size = new System.Drawing.Size(111, 21);
@@ -397,7 +413,11 @@ namespace emulator8086
             "CL",
             "CH",
             "DL",
-            "DH"});
+            "DH",
+            "AX",
+            "BX",
+            "CX",
+            "DX"});
             this.comboBoxFrom.Location = new System.Drawing.Point(225, 384);
             this.comboBoxFrom.Name = "comboBoxFrom";
             this.comboBoxFrom.Size = new System.Drawing.Size(121, 21);

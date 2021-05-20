@@ -39,7 +39,7 @@ namespace emulator8086
         }
         public void Fill()
         {
-            for (int i=0; i < 2;i++)
+            for (int i = 0; i < 2; i++)
             {
                 if (AL_L.Text.Length < 2)
                     AL_L.Text = "0" + AL_L.Text;
@@ -108,7 +108,53 @@ namespace emulator8086
                 Zmienne[7] = a;
             }
         }
+        public string SixteenToEight(string Sixteen)
+        {
 
+            if (Sixteen == "AX")
+            {
+                return AH_L.Text + AL_L.Text;
+            }
+            if (Sixteen == "BX")
+            {
+                return BH_L.Text + BL_L.Text;
+            }
+            if (Sixteen == "CX")
+            {
+                return CH_L.Text + CL_L.Text;
+            }
+            if (Sixteen == "DX")
+            {
+                return DH_L.Text + DL_L.Text;
+            }
+            else
+                return "AX";
+
+        }
+        public void Set16Bit(string target, string liczba)
+        {
+            if (target == "AX")
+            {
+                Zmienne[0] = Convert.ToInt32(liczba.Remove(0, 2), 16);
+                Zmienne[1] = Convert.ToInt32(liczba.Remove(2, 2), 16);
+            }
+            if (target == "BX")
+            {
+                Zmienne[2] = Convert.ToInt32(liczba.Remove(0, 2), 16);
+                Zmienne[3] = Convert.ToInt32(liczba.Remove(2, 2), 16);
+            }
+            if (target == "CX")
+            {
+                Zmienne[4] = Convert.ToInt32(liczba.Remove(0, 2), 16);
+                Zmienne[5] = Convert.ToInt32(liczba.Remove(2, 2), 16);
+            }
+            if (target == "DX")
+            {
+                Zmienne[6] = Convert.ToInt32(liczba.Remove(0, 2), 16);
+                Zmienne[7] = Convert.ToInt32(liczba.Remove(2, 2), 16);
+            }
+
+        }
         public int Text_To_Int(string tak)
         {
             if (tak == "AL")
@@ -152,6 +198,7 @@ namespace emulator8086
             InitializeComponent();
         }
 
+        //to do: 16bit dla SET oraz EXCH
         private void button1_Click_1(object sender, EventArgs e) //sett
         {
 
@@ -160,13 +207,26 @@ namespace emulator8086
                 if (OnlyHexInString(numericUpDown1.Text))
                 {
                     string wybrane = comboBox1.SelectedItem.ToString();
-                    if (Convert.ToInt32(numericUpDown1.Text, 16) < 256)
+                    if (comboBox1.SelectedIndex > 7)
                     {
-                        Update_Variables(Convert.ToInt32(numericUpDown1.Text,16), wybrane);
-                        Update_Display();
+                        if (Convert.ToInt32(numericUpDown1.Text, 16) < 65536)
+                        {
+                            Set16Bit(comboBox1.SelectedItem.ToString(), numericUpDown1.Text);
+                            Update_Display();
+                        }
+                        else
+                            MessageBox.Show("Zbyt duża liczba! ");
                     }
-                    else
-                        MessageBox.Show("Zbyt duża liczba!");
+                    else if (comboBox1.SelectedIndex <= 7)
+                    {
+                        if (Convert.ToInt32(numericUpDown1.Text, 16) < 256)
+                        {
+                            Update_Variables(Convert.ToInt32(numericUpDown1.Text, 16), wybrane);
+                            Update_Display();
+                        }
+                        else
+                            MessageBox.Show("Zbyt duża liczba!");
+                    }
                 }
                 else
                     MessageBox.Show("Nieprawidłowy formtat liczby!");
@@ -181,10 +241,19 @@ namespace emulator8086
             {
                 if (comboBoxOD.SelectedItem != comboBoxDO.SelectedItem)
                 {
-                    int temp = Zmienne[Text_To_Int(comboBoxDO.SelectedItem.ToString())];
-                    //Update_Variables(0, comboBoxDO.SelectedItem.ToString());
-                    Update_Variables(temp, comboBoxOD.SelectedItem.ToString());
-                    Update_Display();
+                    if (comboBoxOD.SelectedIndex > 7 && comboBoxDO.SelectedIndex > 7)
+                    {
+                        Set16Bit(comboBoxDO.SelectedItem.ToString(), SixteenToEight(comboBoxOD.SelectedItem.ToString()));
+                        Update_Display();
+                    }
+                    else if (comboBoxOD.SelectedIndex <= 7 && comboBoxDO.SelectedIndex <= 7)
+                    {
+                        int temp = Zmienne[Text_To_Int(comboBoxDO.SelectedItem.ToString())];
+                        Update_Variables(temp, comboBoxOD.SelectedItem.ToString());
+                        Update_Display();
+                    }
+                    else
+                        MessageBox.Show("Nie można działać na dwóch różnych formatach!");
                 }
                 else
                     MessageBox.Show("Cele muszą być różne!!!");
@@ -197,10 +266,23 @@ namespace emulator8086
             {
                 if (comboBoxFrom.SelectedItem != comboBoxTo.SelectedItem)
                 {
-                    int temp = Zmienne[Text_To_Int(comboBoxTo.SelectedItem.ToString())];
-                    Update_Variables(Zmienne[Text_To_Int(comboBoxFrom.SelectedItem.ToString())], comboBoxTo.SelectedItem.ToString());
-                    Update_Variables(temp, comboBoxFrom.SelectedItem.ToString());
-                    Update_Display();
+                    if (comboBoxFrom.SelectedIndex > 7 && comboBoxTo.SelectedIndex > 7)
+                    {
+                        string tmp = SixteenToEight(comboBoxTo.SelectedItem.ToString());
+                        Set16Bit(comboBoxTo.SelectedItem.ToString(), SixteenToEight(comboBoxFrom.SelectedItem.ToString()));
+                        Set16Bit(comboBoxFrom.SelectedItem.ToString(), tmp);
+                        Update_Display();
+                    }
+
+                    else if (comboBoxFrom.SelectedIndex <= 7 && comboBoxTo.SelectedIndex <= 7)
+                    {
+                        int temp = Zmienne[Text_To_Int(comboBoxTo.SelectedItem.ToString())];
+                        Update_Variables(Zmienne[Text_To_Int(comboBoxFrom.SelectedItem.ToString())], comboBoxTo.SelectedItem.ToString());
+                        Update_Variables(temp, comboBoxFrom.SelectedItem.ToString());
+                        Update_Display();
+                    }
+                    else
+                        MessageBox.Show("Nie można działać na dwóch różnych formatach!");
                 }
                 else
                     MessageBox.Show("Cele muszą być różne!!!");
